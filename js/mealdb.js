@@ -1,11 +1,12 @@
-const spinner = prpoperty => {
-    document.getElementById('spinner').style.display = prpoperty;
+const hideShowContent = (prop1, prop2) => {
+    document.getElementById(prop1).style.display = prop2;
 }
 const searchFood = () => {
     const searchField = document.getElementById('search-field');
     const searchText = searchField.value;
     searchField.value = '';
-    spinner('block');
+    hideShowContent('meal-container','none');
+    hideShowContent('spinner','block');
     if (searchText == '') {
         document.getElementById('error-message').innerText = 'Please write something to search on the box!';
     }
@@ -39,7 +40,8 @@ const searchResult = meals => {
             `;
             mealContainer.appendChild(div);
         });
-        spinner('none');
+        hideShowContent('meal-container','flex');
+        hideShowContent('spinner','none');
     }
 }
 
