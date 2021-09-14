@@ -1,3 +1,12 @@
+// hit enter to press search button
+const searchInput = document.getElementById('search-field');
+const searchButton = document.getElementById('search-btn');
+searchInput.addEventListener("keypress", (e) => {
+    if (e.key == 'Enter') {
+        searchButton.click();
+    }
+});
+
 const hideShowContent = (prop1, prop2) => {
     document.getElementById(prop1).style.display = prop2;
 }
@@ -5,9 +14,10 @@ const searchFood = () => {
     const searchField = document.getElementById('search-field');
     const searchText = searchField.value;
     searchField.value = '';
-    hideShowContent('meal-container','none');
-    hideShowContent('spinner','block');
+    hideShowContent('meal-container', 'none');
+    hideShowContent('spinner', 'block');
     if (searchText == '') {
+        hideShowContent('spinner', 'none');
         document.getElementById('error-message').innerText = 'Please write something to search on the box!';
     }
     else {
@@ -21,6 +31,7 @@ const searchResult = meals => {
     const mealContainer = document.getElementById('meal-container');
     mealContainer.textContent = '';
     if (JSON.stringify(meals) == 'null') {
+        hideShowContent('spinner', 'none');
         document.getElementById('error-message').innerText = 'Sorry! No item found!!';
     }
     else {
@@ -40,8 +51,8 @@ const searchResult = meals => {
             `;
             mealContainer.appendChild(div);
         });
-        hideShowContent('meal-container','flex');
-        hideShowContent('spinner','none');
+        hideShowContent('meal-container', 'flex');
+        hideShowContent('spinner', 'none');
     }
 }
 
